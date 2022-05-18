@@ -92,38 +92,32 @@ export default function Home({ navigation }) {
         )}
         {contenido && construirContenidoAccionable()}
       </View>
-      <ActionButton
-        offsetY={100}
-        buttonColor="transparent"
-        position={"left"}
-        degrees={180}
-        spacing={60}
-        hideShadow
-        renderIcon={handleIconChangeLanguage}
-        style={{ width: "30%", left: Dimensions.get("screen").width * 0.7 }}
+      <View
+        // renderIcon={handleIconChangeLanguage}
+        style={styles.containerTabs}
       >
-        <ActionButton.Item onPress={logout}>
+        <TouchableOpacity onPress={logout}>
           <Image
             source={require("../../assets/power-off.png")}
             resizeMode="cover"
             style={styles.imageSalir}
           ></Image>
-        </ActionButton.Item>
-        <ActionButton.Item onPress={() => handleClickIdiomas()}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleClickIdiomas()}>
           <Image
             source={require("../../assets/idiomas.png")}
             resizeMode="cover"
             style={styles.imageBtn}
           ></Image>
-        </ActionButton.Item>
-        <ActionButton.Item onPress={() => handleClickCategorias()}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleClickCategorias()}>
           <Image
             source={require("../../assets/categorias.png")}
             resizeMode="cover"
             style={styles.imageBtn}
           ></Image>
-        </ActionButton.Item>
-      </ActionButton>
+        </TouchableOpacity>
+      </View>
     </KeyboardAvoidingView>
   );
 }
@@ -134,6 +128,14 @@ const styles = StyleSheet.create({
     height: Dimensions.get("screen").height,
     justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: theme.colores.primary,
+  },
+  containerTabs: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    height: Dimensions.get("screen").height * 0.18,
+    width: Dimensions.get("screen").width,
+    backgroundColor: theme.colores.primary,
   },
   contenedorScreen: {
     flex: 1,

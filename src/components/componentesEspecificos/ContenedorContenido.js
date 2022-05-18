@@ -30,6 +30,11 @@ const imagenes = {
     { value: "4", img: require("../../../assets/4.png") },
     { value: "5", img: require("../../../assets/5.png") },
   ],
+  banderas: [
+    { value: "POR", img: require("../../../assets/portugal.png") },
+    { value: "UK", img: require("../../../assets/uk.png") },
+    { value: "ES", img: require("../../../assets/spain.png") },
+  ],
 };
 const Audios = {
   ES: {
@@ -86,31 +91,54 @@ const Audios = {
 };
 export default function ContenedorContenido(props) {
   const { idioma, categoria } = props;
+  const banderaSeleccionada = imagenes.banderas.filter(
+    (x) => x.value == idioma
+  )[0];
   const ejecutarSonido = async (value) => {
     const { sound } = await Audio.Sound.createAsync(Audios[idioma][value]);
     sound.playAsync();
   };
   return (
-    <View styles={styles.container}>
-      {imagenes[categoria].map((c, index) => (
-        <TouchableOpacity key={index} onPress={() => ejecutarSonido(c.value)}>
-          <Image
-            source={c.img}
-            resizeMode="contain"
-            style={[
-              styles.img,
-              index % 2 == 0 && styles.imgLeft,
-              index % 2 != 0 && styles.imgRight,
-            ]}
-          ></Image>
-        </TouchableOpacity>
-      ))}
+    <View styles={styles.containerGeneral}>
+      <View
+        style={{
+          width: 200,
+          height: 70,
+          position: "absolute",
+          right: 60,
+          top: -40,
+        }}
+      >
+        <Image
+          style={{ width: 250, height: 100 }}
+          source={banderaSeleccionada.img}
+          resizeMode="contain"
+        ></Image>
+      </View>
+      <View styles={styles.containerContenido}>
+        {imagenes[categoria].map((c, index) => (
+          <TouchableOpacity key={index} onPress={() => ejecutarSonido(c.value)}>
+            <Image
+              source={c.img}
+              resizeMode="contain"
+              style={[
+                styles.img,
+                index % 2 == 0 && styles.imgLeft,
+                index % 2 != 0 && styles.imgRight,
+              ]}
+            ></Image>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerGeneral: {
+    alignItems: "flex-start",
+  },
+  containerContenido: {
     flex: 1,
     flexDirection: "column",
   },

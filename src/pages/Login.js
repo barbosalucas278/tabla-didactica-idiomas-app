@@ -88,7 +88,7 @@ export default function Login({ navigation }) {
                 <Image
                   resizeMode="contain"
                   style={{ width: 100, height: 100 }}
-                  source={require("../../assets/icono.png")}
+                  source={require("../../assets/icon.png")}
                 ></Image>
                 <StyledText fontWeight="bold" fontSize="heading" aling="center">
                   Tabla Didáctica

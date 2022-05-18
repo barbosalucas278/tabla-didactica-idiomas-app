@@ -1,6 +1,6 @@
 const theme = {
   colores: {
-    primary: "#dbe9f8",
+    primary: "#9B9D9F",
     secondary: "#e06f29",
     details: "#ed9e6d",
     detaile2: "#c57274",
